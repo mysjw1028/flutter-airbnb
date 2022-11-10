@@ -5,27 +5,32 @@ import 'package:flutter_airbnb/size.dart';
 import 'package:flutter_airbnb/styles.dart';
 
 class HomeHeaderForm extends StatelessWidget {
-  const HomeHeaderForm({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment(-0.6, 0),
-      child: Container(
-        width: 420,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Form(
-          child: Padding(
-            padding: const EdgeInsets.all(gap_l),
-            child: Column(
-              children: [
-                _buildFormTitle(),
-                _buildFormFiled(),
-                _buildFormSubmit(),
-              ],
+    double screenWidth = MediaQuery.of(context).size.width; // 추가
+    return Padding(
+      padding: const EdgeInsets.only(top: gap_m), // 1. AppBar와 거리주기
+      // 2. 정렬 위젯
+      child: Align(
+        // 3. -1.0 부터 1.0 까지 가로 범위에서 0.1의 값은 5%이다.
+        alignment:
+            screenWidth < 520 ? Alignment(0, 0) : Alignment(-0.6, 0), // 변경
+        child: Container(
+          width: 420,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Form(
+            child: Padding(
+              padding: const EdgeInsets.all(gap_l), // 4. Form 내부 여백
+              child: Column(
+                children: [
+                  _buildFormTitle(), // 5. Form 위젯 제목 영역
+                  _buildFormField(), // 6. Form 위젯 Text 입력 양식 영역
+                  _buildFormSubmit(), // 7. Form 위젯 전송 버튼 영역
+                ],
+              ),
             ),
           ),
         ),
@@ -50,27 +55,44 @@ class HomeHeaderForm extends StatelessWidget {
     );
   }
 
-  Widget _buildFormFiled() {
+  Widget _buildFormField() {
     return Column(
       children: [
-        CommonFormFirld(prfixText: "위치", hintText: "근처 추천 장소"),
+        CommonFormField(
+          prfixText: "위치",
+          hintText: "근처 추천 장소",
+        ),
         SizedBox(height: gap_s),
         Row(
           children: [
             Expanded(
-                child: CommonFormFirld(prfixText: "체크인", hintText: "날짜입력")),
+                child: CommonFormField(
+              prfixText: "체크인",
+              hintText: "날짜 입력",
+            )),
             Expanded(
-                child: CommonFormFirld(prfixText: "체크아웃", hintText: "날짜입력")),
+                child: CommonFormField(
+              prfixText: "체크 아웃",
+              hintText: "날짜 입력",
+            )),
           ],
         ),
         SizedBox(height: gap_s),
         Row(
           children: [
-            Expanded(child: CommonFormFirld(prfixText: "성인", hintText: "2")),
-            Expanded(child: CommonFormFirld(prfixText: "어린이", hintText: "0")),
+            Expanded(
+                child: CommonFormField(
+              prfixText: "성인",
+              hintText: "2",
+            )),
+            Expanded(
+                child: CommonFormField(
+              prfixText: "어린이",
+              hintText: "0",
+            )),
           ],
         ),
-        SizedBox(height: gap_s), //common폼 필드에 넣으면 다른곳에서 사용하지 못한다.
+        SizedBox(height: gap_m),
       ],
     );
   }

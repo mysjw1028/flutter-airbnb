@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_airbnb/styles.dart';
 
 //하얀박스안 필드
-class CommonFormFirld extends StatelessWidget {
+class CommonFormField extends StatelessWidget {
   final prfixText;
   final hintText;
 
-  const CommonFormFirld(
+  const CommonFormField(
       {required this.prfixText, required this.hintText, Key? key})
       : super(key: key);
 

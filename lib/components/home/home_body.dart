@@ -15,7 +15,7 @@ class HomeBody extends StatelessWidget {
         width: getBodywidth(context),
         child: Column(
           children: [
-            HomebodyBanner(),
+            HomeBodyBanner(),
             HomeBodyPopular(),
           ],
         ),

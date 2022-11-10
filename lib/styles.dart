@@ -13,7 +13,7 @@ TextStyle subtitle1({Color mColor = Colors.black}) {
   return TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: mColor);
 }
 
-TextStyle suvtitle2({Color mColor = Colors.black}) {
+TextStyle subtitle2({Color mColor = Colors.black}) {
   return TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mColor);
 }
 
