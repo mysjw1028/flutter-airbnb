@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_airbnb/components/common/common_form_field.dart';
+import 'package:flutter_airbnb/constants.dart';
+import 'package:flutter_airbnb/size.dart';
+import 'package:flutter_airbnb/styles.dart';
 
 class HomeHeaderForm extends StatelessWidget {
   const HomeHeaderForm({Key? key}) : super(key: key);
@@ -9,18 +13,20 @@ class HomeHeaderForm extends StatelessWidget {
       alignment: Alignment(-0.6, 0),
       child: Container(
         width: 420,
-        height: 200,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Form(
-          child: Column(
-            children: [
-              _buildFormTitle(),
-              _buildFormFiled(),
-              _buildFormSubmit(),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(gap_l),
+            child: Column(
+              children: [
+                _buildFormTitle(),
+                _buildFormFiled(),
+                _buildFormSubmit(),
+              ],
+            ),
           ),
         ),
       ),
@@ -28,14 +34,64 @@ class HomeHeaderForm extends StatelessWidget {
   }
 
   Widget _buildFormTitle() {
-    return SizedBox();
+    return Column(
+      children: [
+        Text(
+          "모두의 숙소에서 숙소를 검색하세요",
+          style: h4(),
+        ),
+        SizedBox(height: gap_xs),
+        Text(
+          "혼자하는 여행에 적합한 개인실부터 여럿이 함께하는 여행에 좋은 '공간전체' 숙소까지, 모두의 숙소에 다 있습니다. ",
+          style: body1(),
+        ),
+        SizedBox(height: gap_m)
+      ],
+    );
   }
 
   Widget _buildFormFiled() {
-    return SizedBox();
+    return Column(
+      children: [
+        CommonFormFirld(prfixText: "위치", hintText: "근처 추천 장소"),
+        SizedBox(height: gap_s),
+        Row(
+          children: [
+            Expanded(
+                child: CommonFormFirld(prfixText: "체크인", hintText: "날짜입력")),
+            Expanded(
+                child: CommonFormFirld(prfixText: "체크아웃", hintText: "날짜입력")),
+          ],
+        ),
+        SizedBox(height: gap_s),
+        Row(
+          children: [
+            Expanded(child: CommonFormFirld(prfixText: "성인", hintText: "2")),
+            Expanded(child: CommonFormFirld(prfixText: "어린이", hintText: "0")),
+          ],
+        ),
+        SizedBox(height: gap_s), //common폼 필드에 넣으면 다른곳에서 사용하지 못한다.
+      ],
+    );
   }
 
+//TextButton -> 걍 버튼 , OutlineButton->테투리 있는 버튼 / ElevatedButton -> 그림자있음,  InkWell+Container
   Widget _buildFormSubmit() {
-    return SizedBox();
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: kAccentColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          onPressed: () {},
+          child: Text(
+            "검색",
+            style: subtitle1(mColor: Colors.white),
+          )),
+    );
   }
 }
